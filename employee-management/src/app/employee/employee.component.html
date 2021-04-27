@@ -1,0 +1,23 @@
+<div class="col-md-6">
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th> Patient name</th>
+    <th>Patient Number</th>
+    <th>Patient Age</th>
+    <th>Patient Symptoms</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let employee of employees">
+          <td>{{employee.pat_Name}}</td>
+          <td>{{employee.pat_Phone}}</td>
+          <td>{{employee.pat_Age}}</td>
+          <td>{{employee.pat_Symptoms}}</td>
+          <td><button class="btn btn-danger" (click)="deleteEmployee(employee)"> Delete Patient</button></td>
+          <td><a [routerLink]="[ '/patupdate',employee.patient_ID]" ><button class="btn btn-success" > Update</button></a></td>
+          </tr>
+  </tbody>
+    </table>
+
+  </div>
