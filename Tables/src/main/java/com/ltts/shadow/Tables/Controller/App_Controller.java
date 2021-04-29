@@ -1,11 +1,9 @@
 package com.ltts.shadow.Tables.Controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;import org.springframework.data.jdbc.repository.query.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.ltts.shadow.Tables.Models.Employee;
 import com.ltts.shadow.Tables.Models.Patients;
 import com.ltts.shadow.Tables.Repositories.Employee_JPA;
@@ -28,17 +27,21 @@ public class App_Controller
 	Employee_JPA empjpa;
 	@Autowired
 	Patient_JPA patjpa;
+	Patients pat;
 
 	
 	  @GetMapping("/p") public List<Employee> getEmployee() { List<Employee>
 	  emplist=empjpa.findAll(); return emplist; }
 	 
 	 
-	@GetMapping("")
-	public List<Patients> getPatients()
+	@GetMapping(value="",produces = "application/json")
+	public String getPatients()
 	{
-		List<Patients> patlist=patjpa.findAll();
-		return patlist;
+//		List<Patients> patlist=patjpa.findAll();
+//		return patlist;
+		Object patlist=patjpa.findAllPatients();
+		
+		return new Gson().toJson(patlist);
 	}
 	@DeleteMapping("/pat/{id}")
     public Patients delete(@PathVariable int id)
@@ -78,5 +81,11 @@ public class App_Controller
 		System.out.println();
 		return user;
 	}
+//	@GetMapping("/doc/{doc_id}")
+//	public String getName(@PathVariable int doc_id)
+//	{
+//		String name=patjpa.getdoc(doc_id);
+//		return name;
+//	}
 
 }

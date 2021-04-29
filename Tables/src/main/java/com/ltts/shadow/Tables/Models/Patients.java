@@ -1,14 +1,11 @@
 package com.ltts.shadow.Tables.Models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity(name = "Patients")
@@ -36,15 +33,12 @@ public class Patients {
 	@Column(name = "Patient_Weight"  ,length = 50, nullable = true)
 	private String Pat_Weight;
 	
-	@Column(name = "Doctor_Assigned_ID"  ,length = 50, nullable = true)
-	private int Doc_ID;
+	
+	@Column
+	private int Emp_id;
 	
 	@OneToOne(fetch=FetchType.LAZY, mappedBy="Patients")
     private Employee emp;
-
-	public Patients() {
-		super();
-	}
 
 	public int getPatient_ID() {
 		return Patient_ID;
@@ -102,24 +96,17 @@ public class Patients {
 		Pat_Weight = pat_Weight;
 	}
 
-	public int getDoc_ID() {
-		return Doc_ID;
+
+	public int getEmp_id() {
+		return Emp_id;
 	}
 
-	public void setDoc_ID(int doc_ID) {
-		Doc_ID = doc_ID;
-	}
-
-	public Employee getEmp() {
-		return emp;
-	}
-
-	public void setEmp(Employee emp) {
-		this.emp = emp;
+	public void setEmp_id(int emp_id) {
+		Emp_id = emp_id;
 	}
 
 	public Patients(int patient_ID, String pat_Name, String pat_Phone, String pat_BP, String pat_Age,
-			String pat_Symptoms, String pat_Weight, int doc_ID) {
+			String pat_Symptoms, String pat_Weight, int emp_id) {
 		super();
 		Patient_ID = patient_ID;
 		Pat_Name = pat_Name;
@@ -128,8 +115,16 @@ public class Patients {
 		Pat_Age = pat_Age;
 		Pat_Symptoms = pat_Symptoms;
 		Pat_Weight = pat_Weight;
-		Doc_ID = doc_ID;
+		Emp_id = emp_id;
 	}
+
+	public Patients() {
+		super();
+	}
+
+	
+
+	
 	
 	
 	

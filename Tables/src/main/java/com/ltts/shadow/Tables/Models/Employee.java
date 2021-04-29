@@ -1,11 +1,8 @@
 package com.ltts.shadow.Tables.Models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -29,7 +26,7 @@ public class Employee {
 	private String Emp_Department;
 
 	@OneToOne
-    @JoinColumn(name = "Doctor_Assigned_ID", nullable = false)
+    @JoinColumn(name = "Emp_id", nullable = false)
     private Patients Patients;
 	
 	public Employee() {
