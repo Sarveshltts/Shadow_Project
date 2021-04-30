@@ -21,18 +21,20 @@ public class Patients {
 	@Column(name = "Patient_Number"  ,length = 50, nullable = false)
 	private String Pat_Phone;
 	
-	@Column(name = "Patient_BP"  ,length = 50, nullable = true)
-	private String Pat_BP;
-	
 	@Column(name = "Patient_Age"  ,length = 50, nullable = false)
 	private String Pat_Age;
 	
 	@Column(name = "Patient_Symptoms"  ,length = 50, nullable = false)
 	private String Pat_Symptoms;
 	
-	@Column(name = "Patient_Weight"  ,length = 50, nullable = true)
-	private String Pat_Weight;
+	@Column(name = "v_date"  ,length = 50)
+	private String v_date;
 	
+	@Column(name = "Last_vdate"  ,length = 50)
+	private String Last_vdate;
+	
+	@Column(name = "Emp_Name"  ,length = 50, nullable = true)
+	private String Emp_Name;
 	
 	@Column
 	private int Emp_id;
@@ -64,14 +66,6 @@ public class Patients {
 		Pat_Phone = pat_Phone;
 	}
 
-	public String getPat_BP() {
-		return Pat_BP;
-	}
-
-	public void setPat_BP(String pat_BP) {
-		Pat_BP = pat_BP;
-	}
-
 	public String getPat_Age() {
 		return Pat_Age;
 	}
@@ -88,14 +82,29 @@ public class Patients {
 		Pat_Symptoms = pat_Symptoms;
 	}
 
-	public String getPat_Weight() {
-		return Pat_Weight;
+	public String getV_date() {
+		return v_date;
 	}
 
-	public void setPat_Weight(String pat_Weight) {
-		Pat_Weight = pat_Weight;
+	public void setV_date(String v_date) {
+		this.v_date = v_date;
 	}
 
+	public String getLast_vdate() {
+		return Last_vdate;
+	}
+
+	public void setLast_vdate(String last_vdate) {
+		Last_vdate = last_vdate;
+	}
+
+	public String getEmp_Name() {
+		return Emp_Name;
+	}
+
+	public void setEmp_Name(String emp_Name) {
+		Emp_Name = emp_Name;
+	}
 
 	public int getEmp_id() {
 		return Emp_id;
@@ -105,27 +114,31 @@ public class Patients {
 		Emp_id = emp_id;
 	}
 
-	public Patients(int patient_ID, String pat_Name, String pat_Phone, String pat_BP, String pat_Age,
-			String pat_Symptoms, String pat_Weight, int emp_id) {
+	public String getEmp() {
+		return emp.getName();
+	}
+
+	public void setEmp(Employee emp) {
+		this.emp = emp;
+	}
+
+	public Patients(int patient_ID, String pat_Name, String pat_Phone, String pat_Age, String pat_Symptoms,
+			String v_date, String last_vdate, String emp_Name, int emp_id, Employee emp) {
 		super();
 		Patient_ID = patient_ID;
 		Pat_Name = pat_Name;
 		Pat_Phone = pat_Phone;
-		Pat_BP = pat_BP;
 		Pat_Age = pat_Age;
 		Pat_Symptoms = pat_Symptoms;
-		Pat_Weight = pat_Weight;
+		this.v_date = v_date;
+		Last_vdate = last_vdate;
+		Emp_Name = emp_Name;
 		Emp_id = emp_id;
+		this.emp = emp;
 	}
 
 	public Patients() {
 		super();
 	}
-
-	
-
-	
-	
-	
 	
 }

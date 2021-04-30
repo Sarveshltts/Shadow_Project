@@ -1,5 +1,6 @@
 package com.ltts.shadow.Tables.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
 import com.ltts.shadow.Tables.Models.Employee;
 import com.ltts.shadow.Tables.Models.Patients;
 import com.ltts.shadow.Tables.Repositories.Employee_JPA;
@@ -35,13 +35,12 @@ public class App_Controller
 	 
 	 
 	@GetMapping(value="",produces = "application/json")
-	public String getPatients()
+	public List<Patients> getPatients()
 	{
-//		List<Patients> patlist=patjpa.findAll();
-//		return patlist;
-		Object patlist=patjpa.findAllPatients();
+		List<Patients> patlist=patjpa.findAll();
+		return patlist;
 		
-		return new Gson().toJson(patlist);
+
 	}
 	@DeleteMapping("/pat/{id}")
     public Patients delete(@PathVariable int id)

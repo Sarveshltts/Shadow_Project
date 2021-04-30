@@ -18,8 +18,8 @@ public interface Employee_JPA extends JpaRepository<Employee, Integer>
 	
 	  @Query("select u.Emp_Name from Employee u where u.Emp_id = :doc_id"
 	  ) public Employee getdoc(@Param("doc_id")int doc_id);
-	  @Query("select ar.Pat_Name,ar.Pat_Phone,ar.Pat_Age,ar.Pat_Symptoms,u.Emp_Name from Employee u inner join Patients ar on ar.Emp_id = u.Emp_id")
-		public List<Employee> findAllPatients();
+	  @Query("select u.Emp_Name from Employee u inner join Patients ar on ar.Emp_id = u.Emp_id")
+		public Employee findAllPatients();
 	
 	
 }
