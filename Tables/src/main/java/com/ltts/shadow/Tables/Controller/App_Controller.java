@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +16,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ltts.shadow.Tables.Models.AuthRequest;
 import com.ltts.shadow.Tables.Models.Employee;
 import com.ltts.shadow.Tables.Models.Patients;
 import com.ltts.shadow.Tables.Repositories.Employee_JPA;
 import com.ltts.shadow.Tables.Repositories.Patient_JPA;
+import com.ltts.shadow.Tables.service.JwtUtil;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -28,6 +32,12 @@ public class App_Controller
 	@Autowired
 	Patient_JPA patjpa;
 	Patients pat;
+	
+	@Autowired
+	private JwtUtil jwtutil;
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 	
 	  @GetMapping("/p") public List<Employee> getEmployee() { List<Employee>
@@ -86,5 +96,20 @@ public class App_Controller
 //		String name=patjpa.getdoc(doc_id);
 //		return name;
 //	}
+	
+	@PostMapping("/authenticate")
+	public String generateToken(@RequestBody AuthRequest authRequest) throws Exception
+	{
+		try {
+		authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword())
+				);
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
+		return jwtutil.generateToken(authRequest.getUserName());
+	}
 
 }
