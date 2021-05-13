@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Employee, HttpClientService } from '../service/httpclient.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClientService, Login } from '../service/httpclient.service';
 
 @Component({
   selector: 'app-update-employee',
@@ -9,30 +9,48 @@ import { Employee, HttpClientService } from '../service/httpclient.service';
 })
 export class UpdateEmployeeComponent implements OnInit {
   
-  
-
-  Patients: Employee = new Employee(0,"","","","","");
+  // log:guard=new guard("","");
+  log:Login=new Login("","");
+  isDocLoggedIn:boolean=false;
   constructor(
     private httpClientService:HttpClientService,
-    public activateroute:ActivatedRoute
+    public activateroute:ActivatedRoute,
+    private router:Router
   ) { 
   }
 
   ngOnInit(): void 
   {
-     this.activateroute.params.subscribe(params => {
-      this.Patients.patient_ID = params['id'];
-      });
+    //  this.activateroute.params.subscribe(params => {
+    //   this.Patients.patient_ID = params['id'];
+    //   });
   }
-  updateEmployees():void
-  {
+  // updateEmployees():void
+  // {
     
     
-    this.httpClientService.updateEmployees(this.Patients)
-    .subscribe(
-      success => alert("Done"),
-      error => alert(error)
-    );
-  }
+  //   this.httpClientService.updateEmployees(this.Patients)
+  //   .subscribe(
+  //     success => alert("Done"),
+  //     error => alert(error)
+  //   );
+  // }
 
+
+  checkLogin()
+  {
+    this.httpClientService.getDoc(this.log).subscribe(response=>
+      {if (response!=null)
+      {
+        this.router.navigate(['']);
+        this.isDocLoggedIn=true;
+      }
+      else
+      {
+        alert("Wrong Credentials");
+        this.router.navigate(['/patupdate']);
+      }
+    }
+      );
+  }
 }

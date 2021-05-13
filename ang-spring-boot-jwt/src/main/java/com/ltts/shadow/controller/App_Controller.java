@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ltts.shadow.Repositories.DoctorJPA;
 import com.ltts.shadow.Repositories.EmployeeJPA;
 import com.ltts.shadow.Repositories.PatientJPA;
 import com.ltts.shadow.Repositories.UserJPA;
+import com.ltts.shadow.model.Doctor_Login;
 import com.ltts.shadow.model.Employe;
 import com.ltts.shadow.model.Patients;
 import com.ltts.shadow.model.UsersLog;
@@ -29,7 +31,8 @@ public class App_Controller
 	PatientJPA patjpa;
 	@Autowired
 	UserJPA ujpa;
-
+	@Autowired
+	DoctorJPA djpa;
 	
 //	  @GetMapping("/p/{doc_id}") public String getEmployee(@PathVariable int doc_id)
 //	  {
@@ -93,5 +96,13 @@ public class App_Controller
 		List<Employe> empname=empjpa.getname();
 		return empname;
 	}
+	@PostMapping("/val")
+	public List<Doctor_Login> validate(@RequestBody Doctor_Login doc)
+	{
+		List<Doctor_Login> docret=djpa.getVal(doc.getDocUser(), doc.getDocPass());
+//		List<Doctor_Login> docret=djpa.findAll();
+		return docret;
+	}
+	
 
 }

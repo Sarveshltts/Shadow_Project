@@ -30,8 +30,8 @@ export class Names{
 }
 export class Login{
   constructor(
-    public username:String,
-    public password:String
+    public docUser:String,
+    public docPass:String
   ){}
 }
 @Injectable({
@@ -65,5 +65,9 @@ export class HttpClientService {
   public createUser(login)
   {
     return this.httpClient.post<Login>("http://localhost:8086/genuser",login);
+  }
+  public getDoc(log)
+  {
+    return this.httpClient.post<Login>("http://localhost:8086/val",log);
   }
 }

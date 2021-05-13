@@ -21,7 +21,7 @@ public class SpringBootHelloWorldApplication {
 //	@PostConstruct
 //	public void initUsers()
 //	{
-//		List<UsersLog> users= Stream.of(new UsersLog(1,"tejaswi","password")).collect(Collectors.toList());
+//		List<UsersLog> users= Stream.of(new UsersLog(1,"tejaswi","$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6")).collect(Collectors.toList());
 //		ujpa.saveAll(users);
 //	}
 	public static void main(String[] args) {

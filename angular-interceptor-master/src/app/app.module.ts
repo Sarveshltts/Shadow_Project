@@ -14,6 +14,10 @@ import { LogoutComponent } from './logout/logout.component';
 import { BasicAuthHtppInterceptorService } from './service/basic-auth-htpp-interceptor.service';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { RegisteruserComponent } from './registeruser/registeruser.component';
+import {NgxPaginationModule} from 'ngx-pagination';  
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { UfrontComponent } from './ufront/ufront.component';
+import { PerioformComponent } from './perioform/perioform.component';  
 
 
 @NgModule({
@@ -26,13 +30,17 @@ import { RegisteruserComponent } from './registeruser/registeruser.component';
     LoginComponent,
     LogoutComponent,
     UpdateEmployeeComponent,
-    RegisteruserComponent
+    RegisteruserComponent,
+    UfrontComponent,
+    PerioformComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [
   {  

@@ -26,4 +26,36 @@
       <button class="btn btn-success" (click)="updateEmployees()">Update</button>
     </form>
     </div> -->
-    <p>HI all</p>
+    <!-- <p>HI all</p> -->
+    <div class="container">
+
+      <div class="fake">
+       <div id="us">
+        <b> User Name : <input type="text" name="username" [(ngModel)]="log.docUser"></b>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      <br><br>
+    </div>
+    <div id="pwd">
+        <b>Password : <input type="password" name="password" [(ngModel)]="log.docPass"></b>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      <br><br>
+    </div>
+    <div>
+        <button  id="yu" (click)=checkLogin() class="btn">
+          <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <b>Login</b>
+        </button>
+      </div>
+    </div>
+    <br><br><br><br>
+    
+    </div>
